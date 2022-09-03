@@ -32,4 +32,18 @@ var searchRange = function (nums, tar) {
   };
 
 
-  
+  var searchRange = function (nums, tar) {
+    let l = 0,r = nums.length - 1,res = [-1, -1];
+    while (l <= r) {
+      const mid = ~~(l / 2 + r / 2);
+      nums[mid] < tar ? (l = mid + 1) : (r = mid - 1);
+    }
+    if (nums[l] !== tar) return res;
+    res[0] = l, r = nums.length - 1;
+    while (l <= r) {
+      const mid = ~~(l / 2 + r / 2);
+      nums[mid] <= tar ? (l = mid + 1) : (r = mid - 1);
+    }
+    res[1] = r;
+    return res;
+  };
