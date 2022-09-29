@@ -6,4 +6,18 @@
 
 // The testcases are generated so that the answer will be less than or equal to 2 * 109.
 
- 
+var uniquePathsWithObstacles = function(obstacleGrid) {
+    let m = obstacleGrid.length;
+    let n = obstacleGrid[0].length;
+    
+    var uniquePaths = function(m,n,memo ={}) {
+        let pair = `${m}:${n}`;
+        if(memo[pair]) return memo[pair];
+        if(m === 0 || n === 0) return 0;
+        if(obstacleGrid[m -1][n -1] == 1) return 0;
+        if(m === 1 && n === 1 ) return 1;
+        memo[pair] = uniquePaths(m-1,n,memo) + uniquePaths(m,n-1,memo);
+        return memo[pair];
+        };
+    return uniquePaths(m,n);
+};
